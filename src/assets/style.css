@@ -1,0 +1,134 @@
+/* Base */
+html,
+body {
+  min-height: 100%;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #f6d365 100%);
+  background-attachment: fixed;
+  color: #2d2d2d;
+}
+
+.navbar {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-item {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+}
+
+.section {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+/* Buttons */
+.button.is-primary,
+.button.is-link,
+.button.is-success {
+  border-radius: 0.5rem;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.input,
+.input:focus {
+  border-radius: 0.5rem;
+  box-shadow: none;
+  max-width: 20rem;
+}
+
+/* Weather Cards */
+#forecast-list .column {
+  padding: 1rem;
+}
+
+.forecast-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.25rem;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.forecast-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+#forecast-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+#forecast-list .column {
+  flex: 0 1 300px;
+  max-width: 300px;
+}
+
+/* Modal */
+.modal-card {
+  border-radius: 0.75rem;
+}
+.modal-card-head,
+.modal-card-foot {
+  border: none;
+}
+.modal-card-title {
+  font-weight: 600;
+}
+
+/* Pagination */
+.pagination-previous,
+.pagination-next,
+.pagination-link {
+  border-radius: 0.5rem;
+}
+.pagination-link.is-current {
+  background-color: #3273dc;
+  color: #fff;
+}
+
+/* Notifications */
+#notifications .notification {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 90%;
+  max-width: 400px;
+}
+
+/* Footer */
+.footer {
+  background: #ffffff;
+  padding: 2rem 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .navbar-item strong {
+    font-size: 1.1rem;
+  }
+
+  #forecast-list .column {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .modal-card {
+    width: 95%;
+    margin: auto;
+  }
+}

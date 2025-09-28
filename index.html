@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Weather</title>
+  <meta name="description" content="Weather forecasting app with location management. Built as a student project.">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./src/assets/style.css">
+
+  <script type="module" src="/src/main.ts"></script>
+</head>
+<body>
+
+  <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <i class="fas fa-cloud mr-2"></i>
+          <strong>Your Weather</strong>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="section">
+    <div class="container">
+      
+      <section class="mb-5">
+        <div class="field has-addons is-justify-content-space-between">
+          <p class="control">
+            <button id="btn-add" class="button is-primary">
+              <span class="icon"><i class="fas fa-plus"></i></span>
+              <span>Add Location</span>
+            </button>
+          </p>
+          <p class="control is-expanded">
+            <input id="global-search" class="input" type="search" placeholder="Find locations..." aria-label="Search forecasts">
+          </p>
+        </div>
+      </section>
+
+      <div id="notifications" aria-live="polite"></div>
+
+      <!-- Weather Cards -->
+      <section>
+        <div id="forecast-list" class="columns is-multiline" aria-live="polite">
+          <div class="column is-12 has-text-centered has-text-grey-light">
+            <p class="icon is-large"><i class="fas fa-cloud-sun fa-2x"></i></p>
+            <p class="title is-5">No locations added</p>
+            <p class="subtitle is-6">Click "Add Location" to begin tracking forecasts</p>
+          </div>
+        </div>
+      </section>
+
+      <nav class="pagination is-centered mt-5" role="navigation" aria-label="pagination">
+        <button id="prev-page" class="pagination-previous" disabled>Previous</button>
+        <button id="next-page" class="pagination-next" disabled>Next</button>
+        <ul id="pagination-list" class="pagination-list"></ul>
+      </nav>
+    </div>
+  </main>
+
+  <div id="add-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title"><i class="fas fa-map-marker-alt mr-2"></i>Add Location</p>
+        <button class="delete" id="add-modal-close" aria-label="Close modal"></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="field">
+          <p class="control has-icons-left">
+            <input id="add-search" class="input is-medium" type="search" placeholder="City, ZIP code, or coordinates..." aria-label="Search location">
+            <span class="icon is-left"><i class="fas fa-search"></i></span>
+          </p>
+        </div>
+        <div id="add-preview" class="mt-3"></div>
+      </section>
+      <footer class="modal-card-foot">
+        <button id="perform-search" class="button is-link">
+          <span class="icon"><i class="fas fa-search"></i></span>
+          <span>Search</span>
+        </button>
+        <button id="add-save" class="button is-success" disabled>
+          <span class="icon"><i class="fas fa-plus"></i></span>
+          <span>Add</span>
+        </button>
+        <button id="add-cancel" class="button">Cancel</button>
+      </footer>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Your Weather</strong> <br>
+        Weather data by <a href="https://openweathermap.org/" target="_blank" rel="noopener">OpenWeatherMap</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

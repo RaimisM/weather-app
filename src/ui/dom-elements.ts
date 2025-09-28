@@ -1,0 +1,13 @@
+export const btnAdd = document.getElementById('btn-add') as HTMLButtonElement;
+export const addModal = document.getElementById('add-modal') as HTMLElement;
+export const addModalClose = document.getElementById('add-modal-close') as HTMLButtonElement;
+export const addSearch = document.getElementById('add-search') as HTMLInputElement;
+export const performSearchBtn = document.getElementById('perform-search') as HTMLButtonElement;
+export const addSaveBtn = document.getElementById('add-save') as HTMLButtonElement;
+export const addCancelBtn = document.getElementById('add-cancel') as HTMLButtonElement;
+export const addPreview = document.getElementById('add-preview') as HTMLElement;
+export const forecastList = document.getElementById('forecast-list') as HTMLElement;
+export const globalSearch = document.getElementById('global-search') as HTMLInputElement;
+export const prevPageBtn = document.getElementById('prev-page') as HTMLButtonElement;
+export const nextPageBtn = document.getElementById('next-page') as HTMLButtonElement;
+export const paginationList = document.getElementById('pagination-list') as HTMLElement;
