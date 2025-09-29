@@ -48,7 +48,7 @@ The design is styled with [Bulma.io](https://bulma.io/) for a minimal, clean, an
 Clone the repository and install dependencies:
 
 ```bash
-git clone 
+git clone https://github.com/RaimisM/weather-app.git
 cd weather-app
 npm install
 ```
