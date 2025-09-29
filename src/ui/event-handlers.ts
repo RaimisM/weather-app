@@ -38,15 +38,15 @@ export async function handleSearchLocation() {
   const data = await fetchWeatherFor(tmp, []);
   if (!data) {
     addPreview.innerHTML = `
-    <div class="notification is-danger">
-      No results found. Try searching by:
-      <ul>
-        <li><strong>City name</strong> — e.g. <em>London</em></li>
-        <li><strong>ZIP code</strong> — e.g. <em>zip:10001</em></li>
-        <li><strong>Coordinates</strong> — e.g. <em>coord:59.9139,10.7522</em></li>
-      </ul>
-    </div>
-  `;
+      <div class="notification is-danger">
+        No results found. Try searching by:
+        <ul>
+          <li><strong>City name</strong> — e.g. <em>London</em></li>
+          <li><strong>ZIP code</strong> — e.g. <em>zip:10001</em></li>
+          <li><strong>Coordinates</strong> — e.g. <em>coord:59.9139,10.7522</em></li>
+        </ul>
+      </div>
+    `;
     return;
   }
 
@@ -59,20 +59,37 @@ export async function handleSearchLocation() {
     el(
       'p',
       {},
-      `Temp: ${typeof data.main?.temp === 'number' ? data.main.temp.toFixed(1) : '—'} °C${desc ? ' — ' + desc : ''}`,
+      `Temp: ${typeof data.main?.temp === 'number' ? data.main.temp.toFixed(1) : '—'} °C${
+        desc ? ' — ' + desc : ''
+      }`,
     ),
   );
   addPreview.appendChild(box);
   addSaveBtn.disabled = false;
-  (addSaveBtn as any)._preview = tmp;
+  (addSaveBtn as any)._preview = { ...tmp, data };
 }
 
-export function handleSaveLocation(savedForecasts: SavedForecast[], renderCallback: () => void) {
-  const stored = (addSaveBtn as any)._preview;
+export function handleSaveLocation(
+  savedForecasts: SavedForecast[],
+  renderCallback: () => void
+) {
+  const stored = (addSaveBtn as any)._preview as SavedForecast | undefined;
   if (!stored) {
     notify('Nothing to save', 'is-warning');
     return;
   }
+
+  const exists = savedForecasts.some(sf => {
+    const existingName = sf.data?.name ?? sf.query;
+    const newName = stored.data?.name ?? stored.query;
+    return existingName.trim().toLowerCase() === newName.trim().toLowerCase();
+  });
+
+  if (exists) {
+    notify(`"${stored.query}" is already in your forecast list`, 'is-warning');
+    return;
+  }
+
   const id = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
   savedForecasts.push({
     ...stored,
@@ -89,7 +106,7 @@ export function handleSaveLocation(savedForecasts: SavedForecast[], renderCallba
 export function handlePrevPage(
   currentPage: number,
   setCurrentPage: (page: number) => void,
-  renderCallback: () => void,
+  renderCallback: () => void
 ) {
   if (currentPage > 1) {
     setCurrentPage(currentPage - 1);
@@ -101,7 +118,7 @@ export function handleNextPage(
   currentPage: number,
   filteredCount: number,
   setCurrentPage: (page: number) => void,
-  renderCallback: () => void,
+  renderCallback: () => void
 ) {
   const total = Math.max(1, Math.ceil(filteredCount / PAGE_SIZE));
   if (currentPage < total) {
